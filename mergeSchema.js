@@ -28,7 +28,7 @@ module.exports = () => {
   const createAWSScalarFile = util.promisify(fs.appendFile);
   createAWSScalarFile('aws-scalar.graphql', awsScalarString).then(() => {
     process.exec(
-      'graphql-schema-utilities -s "{./aws-scalar.graphql,src/functions/**/*.graphql}" -o "schema-temp.graphql"',
+      'graphql-schema-utilities -s "{./aws-scalar.graphql,src/functions/**/*.graphql}" -o "schema-temp.graphql" -d',
       (err) => {
         if (err) {
           fs.unlinkSync('aws-scalar.graphql');
